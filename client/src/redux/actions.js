@@ -1,4 +1,4 @@
-import { GETCOUNTRIES, GET_COUNTRY_DETAIL, CLEANDETAIL } from "./types";
+import { GETCOUNTRIES, GET_COUNTRY_DETAIL, CLEANDETAIL, GET_COUNTRY_NAME } from "./types";
 import axios from "axios";
 
 
@@ -26,5 +26,12 @@ export const cleanDetail = () => {
 }
 
 
+export const getCountryName = (name) => {
+    return { type: GET_COUNTRY_NAME, payload: name }
+}
+
+export const hola = () => {
+    return console.log({hola: hola});
+}
 
 

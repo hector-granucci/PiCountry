@@ -5,6 +5,7 @@ import { getCountryName,  getCountries } from '../../redux/actions';
 
 
 const Nav = () => {
+
     const dispatch = useDispatch()
 
     const [name, setName] = useState('')
@@ -34,6 +35,9 @@ const Nav = () => {
                 <button onClick={handleSearch}>BUSCAR</button>
                 <button onClick={handlerCoutry}>
                     <Link to="/home">HOME</Link>
+                </button>
+                <button>
+                    <Link to="/create">CREATE ACTIVITY</Link>
                 </button>
             </nav>
         </div>

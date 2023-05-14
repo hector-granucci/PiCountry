@@ -1,4 +1,4 @@
-import { GETCOUNTRIES, GET_COUNTRY_DETAIL, CLEANDETAIL, GET_COUNTRY_NAME } from "./types"
+import { GETCOUNTRIES, GET_COUNTRY_DETAIL, CLEANDETAIL, GET_COUNTRY_NAME, POST_CREATE } from "./types"
 
 const initialState = {
     countries: [],
@@ -30,6 +30,10 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 countries: country
             };
+            case POST_CREATE:
+            return {
+                ...state,
+            }
         default:
             return { ...state }
     }

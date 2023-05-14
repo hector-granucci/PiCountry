@@ -2,5 +2,6 @@ export const GETCOUNTRIES = "GETCOUNTRIES"
 export const GET_COUNTRY_DETAIL = "GET_COUNTRY_DETAIL"
 export const CLEANDETAIL = "CLEANDETAIL"   
 export const GET_COUNTRY_NAME = "GET_COUNTRY_NAME"
+export const POST_CREATE = "POST_CREATE"
 export const HOLA = "HOLA"
 

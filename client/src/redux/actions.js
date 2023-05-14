@@ -1,4 +1,4 @@
-import { GETCOUNTRIES, GET_COUNTRY_DETAIL, CLEANDETAIL, GET_COUNTRY_NAME } from "./types";
+import { GETCOUNTRIES, GET_COUNTRY_DETAIL, CLEANDETAIL, GET_COUNTRY_NAME} from "./types";
 import axios from "axios";
 
 
@@ -29,6 +29,14 @@ export const cleanDetail = () => {
 export const getCountryName = (name) => {
     return { type: GET_COUNTRY_NAME, payload: name }
 }
+
+export const postActivity = (payload) => {
+    return async function (dispatch){
+        const response = await axios.post("http://localhost:3001/activities", payload)
+        return response
+    } 
+}
+
 
 export const hola = () => {
     return console.log({hola: hola});

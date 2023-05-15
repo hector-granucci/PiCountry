@@ -4,8 +4,6 @@ import { getCountries, postActivity } from '../../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-
-
  const  Create = () => {
     const dispatch = useDispatch()
     const countries = useSelector((state) => state.countries)
@@ -13,10 +11,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
     const [input, setInput] = useState({
         name: "",
-        difficulty: "",
-        duration: "",
+        difficulty: 3,
+        duration: 0,
         season:"",
-        countries:[]
+        countrie:[]
     })
 
     const handleChange = (e) => {
@@ -38,20 +36,20 @@ import { useSelector, useDispatch } from 'react-redux';
     const handleSelect = (e) => {
         setInput({
            ...input,
-           countries: [...input.countries,e.target.value]
+           countrie: [...input.countrie,e.target.value]
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit =  (e) => {
         e.preventDefault();
-        dispatch(postActivity(input))
+        dispatch( postActivity(input))
         alert("activity Creado")
         setInput({
                 name: "",
-                difficulty: "",
-                duration: "",
+                difficulty: 3,
+                duration: 0,
                 season:"",
-                countries:[]
+                countrie:[]
         })
     }
 
@@ -77,15 +75,16 @@ import { useSelector, useDispatch } from 'react-redux';
                     onChange={(e)=>handleChange(e)}
                     />
                 </div>
-                <div>
+                 <div>
                     <label>Difficulty:</label>
                     <input 
                     type="number"
                     value={input.difficulty} 
                     name="difficulty"
+                    defaultValue={3}
                     onChange={(e)=>handleChange(e)}
                     />
-                </div>
+                </div> 
                 <div>
                     <label>Duration:</label>
                     <input 
@@ -100,35 +99,39 @@ import { useSelector, useDispatch } from 'react-redux';
                     <label><input
                      type="checkbox" 
                      name='Verano'
-                     velue="Verano"
+                     value="Verano"
                      onChange={(e)=>handleCheck(e)}
                      />Verano</label>  
                      <label><input
                      type="checkbox" 
                      name='Otoño'
-                     velue="Otoño"
+                     value="Otoño"
                      onChange={(e)=>handleCheck(e)}
                      />Otoño</label> 
                      <label><input
                      type="checkbox" 
                      name='Primavera'
-                     velue="Primavera"
+                     value="Primavera"
                      onChange={(e)=>handleCheck(e)}
                      />Primavera</label>
                      <label><input
                      type="checkbox" 
                      name='Invierno'
-                     velue="Invierno"
+                     value="Invierno"
                      onChange={(e)=>handleCheck(e)}
                      />Invierno</label>                      
                 </div>
+                <div>
                 <select onChange={(e)=>handleSelect(e)}>
                     {countries.map((count) => (
                         <option value={count.name}>{count.name}</option>
                     ))}
                 </select>
-                <ul><li>{input.countries.map(el => el + ",")}</li></ul>
-                <button type='submit'>Create</button>
+                </div>
+                <div>
+                <ul><li>{input.countrie.map(el => el + ",")}</li></ul>
+                </div>
+                <button type='submit'>Create</button> 
             </form>
         </div>
     )

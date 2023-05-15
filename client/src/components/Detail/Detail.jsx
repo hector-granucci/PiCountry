@@ -16,7 +16,8 @@ const Detail = () => {
 
     return (
         <div>
-            <h1>{countryDetail.name}</h1>
+            <h1>{countryDetail.id}</h1>
+            <h2>{countryDetail.name}</h2>
             <h2>{countryDetail.continent}</h2>
             <h2>{countryDetail.capital}</h2>
             <h2>{countryDetail.subregion}</h2>

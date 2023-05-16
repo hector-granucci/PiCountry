@@ -1,55 +1,91 @@
 import React, { useState, useEffect } from 'react'
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getCountries, postActivity } from '../../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
+import valide from './valide';
 
 
- const  Create = () => {
+const Create = () => {
     const dispatch = useDispatch()
-    const countries = useSelector((state) => state.countries)
+    const countriesState = useSelector((state) => state.countries)
+    const [errors, setErrors] = useState({})
 
 
     const [input, setInput] = useState({
         name: "",
-        difficulty: 3,
+        difficulty: 0,
         duration: 0,
-        season:"",
-        countrie:[]
+        season: "",
+        countries: []
     })
+
 
     const handleChange = (e) => {
         setInput({
             ...input,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         })
+        setErrors(valide({
+            ...input,
+            [e.target.name]: e.target.value
+        }))
     }
 
-    const handleCheck= (e) => {
-        if(e.target.checked){
+    const handleCheck = (e) => {
+        const { value, checked } = e.target
+        checked &&
             setInput({
                 ...input,
-                season: e.target.value
+                season:  value
             })
-        }
+        setErrors(valide({
+            ...input,
+            season: value
+        }))
+        !checked &&
+            setInput({
+                ...input,
+                season: ""
+            })
+        setErrors(
+            valide({
+                ...input,
+                season: [value]
+            })
+        )
     }
+
+
 
     const handleSelect = (e) => {
         setInput({
-           ...input,
-           countrie: [...input.countrie,e.target.value]
+            ...input,
+            countries: [...input.countries, e.target.value]
+        })
+        setErrors(valide({
+            ...input,
+            countries: e.target.value
+        }))
+    }
+
+    const handleDelete = (el) => {
+        setInput({
+            ...input,
+            countries: input.countries.filter(coun => coun !== el)
         })
     }
 
-    const handleSubmit =  (e) => {
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch( postActivity(input))
+        dispatch(postActivity(input))
         alert("activity Creado")
         setInput({
-                name: "",
-                difficulty: 3,
-                duration: 0,
-                season:"",
-                countrie:[]
+            name: "",
+            difficulty: 0,
+            duration: 0,
+            season: "",
+            countries: []
         })
     }
 
@@ -65,74 +101,106 @@ import { useSelector, useDispatch } from 'react-redux';
         <div>
             <Link to="/home"><button>HOME</button></Link>
             <h1>Create Activity</h1>
-            <form onSubmit={(e)=>handleSubmit(e)}>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
                     <label>Name:</label>
-                    <input 
-                    type="text"
-                    value={input.name} 
-                    name="name"
-                    onChange={(e)=>handleChange(e)}
+                    <input
+                        type="text"
+                        value={input.name}
+                        name="name"
+                        onChange={(e) => handleChange(e)}
                     />
+                    {errors.name && (
+                        <p>{errors.name}</p>
+                    )}
                 </div>
-                 <div>
+                <div>
                     <label>Difficulty:</label>
-                    <input 
-                    type="number"
-                    value={input.difficulty} 
-                    name="difficulty"
-                    defaultValue={3}
-                    onChange={(e)=>handleChange(e)}
+                    <input
+                        type="number"
+                        value={input.difficulty}
+                        name="difficulty"
+                        onChange={(e) => handleChange(e)}
                     />
-                </div> 
+                    {errors.difficulty && (
+                        <p>{errors.difficulty}</p>
+                    )}
+                </div>
                 <div>
                     <label>Duration:</label>
-                    <input 
-                    type="number"
-                    value={input.duration} 
-                    name="duration"
-                    onChange={(e)=>handleChange(e)}
+                    <input
+                        type="number"
+                        value={input.duration}
+                        name="duration"
+                        onChange={(e) => handleChange(e)}
                     />
+                    {errors.duration && (
+                        <p>{errors.duration}</p>
+                    )}
                 </div>
                 <div>
-                    <label>Season:</label>
-                    <label><input
-                     type="checkbox" 
-                     name='Verano'
-                     value="Verano"
-                     onChange={(e)=>handleCheck(e)}
-                     />Verano</label>  
-                     <label><input
-                     type="checkbox" 
-                     name='Otoño'
-                     value="Otoño"
-                     onChange={(e)=>handleCheck(e)}
-                     />Otoño</label> 
-                     <label><input
-                     type="checkbox" 
-                     name='Primavera'
-                     value="Primavera"
-                     onChange={(e)=>handleCheck(e)}
-                     />Primavera</label>
-                     <label><input
-                     type="checkbox" 
-                     name='Invierno'
-                     value="Invierno"
-                     onChange={(e)=>handleCheck(e)}
-                     />Invierno</label>                      
+                    <span>Season:</span>
+                    <div key={"verano"}>
+                        <label htmlFor='Verano'>Verano</label>
+                        <input
+                            id="Verano"
+                            type="checkbox"
+                            name='Verano'
+                            value="Verano"
+                            onChange={(e) => handleCheck(e)}
+                        />
+                    </div>
+                    <div key={"otoño"}>
+                        <label htmlFor='Otoño'>Otoño</label>
+                        <input
+                            id="Otoño"
+                            type="checkbox"
+                            name='Otoño'
+                            value="Otoño"
+                            onChange={(e) => handleCheck(e)}
+                        />
+                    </div>
+                    <div key={"primevera"}>
+                        <label htmlFor='Primavera'>Primavera</label>
+                        <input
+                            id="Primavera"
+                            type="checkbox"
+                            name='Primavera'
+                            value="Primavera"
+                            onChange={(e) => handleCheck(e)}
+                        />
+                    </div>
+                    <div key={"invierno"}>
+                        <label htmlFor='Invierno'>Invierno</label>
+                        <input
+                            id="Invierno"
+                            type="checkbox"
+                            name='Invierno'
+                            value="Invierno"
+                            onChange={(e) => handleCheck(e)}
+                        />
+                    </div>
+                    {errors.season && (
+                        <p>{errors.season}</p>
+                    )}
                 </div>
                 <div>
-                <select onChange={(e)=>handleSelect(e)}>
-                    {countries.map((count) => (
-                        <option value={count.name}>{count.name}</option>
-                    ))}
-                </select>
+                    <select onChange={(e) => handleSelect(e)}>
+                        {countriesState.map((count) => (
+                            <option value={count.name}>{count.name}</option>
+                        ))}
+                    </select>
+                    {errors.countries && (
+                        <p>{errors.countries}</p>)}
                 </div>
-                <div>
-                <ul><li>{input.countrie.map(el => el + ",")}</li></ul>
-                </div>
-                <button type='submit'>Create</button> 
+                <button type='submit'>Create</button>
             </form>
+            {input.countries.map((el) =>
+                <div>
+                    <p>{el}</p>
+                    <button onClick={() => handleDelete(el)}>X</button>
+                </div>
+            )}
         </div>
     )
 }

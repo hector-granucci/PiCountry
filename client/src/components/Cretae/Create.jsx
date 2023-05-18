@@ -193,7 +193,7 @@ const Create = () => {
                     {errors.countries && (
                         <p>{errors.countries}</p>)}
                 </div>
-                <button type='submit'>Create</button>
+                <button type='submit' disabled={Object.keys(errors).length > 0}>Create</button>
             </form>
             {input.countries.map((el) =>
                 <div>

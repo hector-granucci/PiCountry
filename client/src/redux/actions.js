@@ -1,4 +1,4 @@
-import { GETCOUNTRIES, GET_COUNTRY_DETAIL, CLEANDETAIL, GET_COUNTRY_NAME} from "./types";
+import { GETCOUNTRIES, GET_COUNTRY_DETAIL, CLEANDETAIL, GET_COUNTRY_NAME, ORDER_NAME, ORDER_POPULATION,FILTER_CONTINENTE,GET_ACTIVITY,FILTER_ACTIVITY} from "./types";
 import axios from "axios";
 
 
@@ -31,12 +31,36 @@ export const getCountryName = (name) => {
 }
 
 export const postActivity = (payload) => {
-    return async function (dispatch){
+    return async function () {
         const response = await axios.post("http://localhost:3001/activities", payload)
         return response
     } 
 }
+export const orderName = (payload) => {
+    return { type: ORDER_NAME, payload}
+}
 
+export const orderPopulation = (payload) => {
+    return { type: ORDER_POPULATION, payload}
+}
+
+export const filterContinente  = (payload) => {
+    return { type: FILTER_CONTINENTE, payload}
+}
+
+export const filterActiviti= (payload) => {
+    return { type: FILTER_ACTIVITY, payload}
+}
+
+export const getActivity = () => {
+    return async function (dispatch) {
+        let info = await axios.get("http://localhost:3001/activities")
+        return dispatch({
+            type: GET_ACTIVITY,
+            payload: info.data
+        })
+    }
+}
 
 export const hola = () => {
     return console.log({hola: hola});

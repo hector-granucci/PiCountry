@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries } from "../../redux/actions.js";
+import { getCountries, orderName, orderPopulation, filterContinente, filterActiviti, getActivity } from "../../redux/actions.js";
 import Paginacion from "../Paginacion/Paginacion.jsx";
 import Country from "../country/country";
 import Nav from '../Nav/Nav.jsx';
@@ -9,6 +9,7 @@ import Nav from '../Nav/Nav.jsx';
 const Home = () => {
     const dispatch = useDispatch();
     const countries = useSelector(state => state.countries)
+    const activityState = useSelector((state) => state.activities)
 
     const [currentPage, setCurrentPage] = useState(1)
     const contriesPerPage = 10;
@@ -29,18 +30,64 @@ const Home = () => {
     }
 
     useEffect(() => {
-        if(countries.length < 1){
-        dispatch(getCountries())}
+        if (Object.keys(countries).length < 1) {
+            dispatch(getActivity())
+            dispatch(getCountries())
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
+    const [order, setOrder] = useState("")
+
+    const handleSort = (e) => {
+        e.preventDefault();
+        dispatch(orderName(e.target.value))
+        setCurrentPage(1);
+        setOrder(`ordernado ${e.target.value}`)
+    }
+    const handleSortPop = (e) => {
+        e.preventDefault();
+        dispatch(orderPopulation(e.target.value))
+        setCurrentPage(1);
+        setOrder(`ordernado ${e.target.value}`)
+    }
+    const handlerFilterContinent = (e) => {
+        dispatch(filterContinente(e.target.value))
+    }
+    const handlerFilterActivity = (e) => {
+        dispatch(filterActiviti(e.target.value))
+    }
+
     return (
         <div>
             <h1>Countries</h1>
-             <Nav/>
+            <Nav />
+            <select onChange={e => handleSort(e)}>
+                <option value="des">Desendente</option>
+                <option value="asc">Asendente</option>
+            </select>
+            <select onChange={e => handleSortPop(e)}>
+                <option value="menor">Menor Poblacion</option>
+                <option value="mayor">Mayor Poblacion</option>
+            </select>
+            <select onChange={e => handlerFilterContinent(e)}>
+                <option value="All">All</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="Africa">Africa</option>
+                <option value="South America">South America</option>
+                <option value="North America">North America</option>
+                <option value="Oceania">Oceania</option>
+                <option value='Antarctica'>Antártica</option>
+            </select>
+            <select onChange={(e) => handlerFilterActivity(e)}>
+                {activityState.map((count) => (
+                    <option value={count.name}>{count.name}</option>
+                ))}
+            </select>
             {
-                  currentCountry.map(con => {
+                currentCountry.map(con => {
                     return (
                         <Country
                             key={con.id}
@@ -53,14 +100,14 @@ const Home = () => {
                 })
             }
             <div>
-            <Paginacion
-            currentPage={currentPage}
-            contriesPerPage={contriesPerPage}
-            paginate={paginate}
-            handlerPrev={handlerPrev}
-            handlerNext={handlerNext}
-            countries={countries?.length}
-            />
+                <Paginacion
+                    currentPage={currentPage}
+                    contriesPerPage={contriesPerPage}
+                    paginate={paginate}
+                    handlerPrev={handlerPrev}
+                    handlerNext={handlerNext}
+                    countries={countries?.length}
+                />
             </div>
         </div>
     )

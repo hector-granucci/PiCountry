@@ -1,0 +1,46 @@
+.prev{
+    display: inline-block;
+    margin: 9px;
+}
+.prev button{
+    background-color: rgb(248, 168, 48);
+    border: 3px  solid black;
+    border-radius: 7px;
+    height: 27px;height: 27px;
+}
+.prev button:hover{
+    cursor: pointer;
+    border: 2px solid  rgb(255, 255, 255);
+    color: rgb(239, 243, 243);
+    background-color: black;
+}
+
+
+
+.numbers{
+    display: inline-block;
+    color: rgb(248, 168, 48);
+}
+.numbers p{
+    backdrop-filter: blur(100px);
+    border: 2px  double black;
+    border-radius: 7px;
+}
+
+
+.Next{
+    display: inline-block;
+    margin: 9px;
+}
+.Next button{
+    border: 3px  solid black;
+    background-color: rgb(248, 168, 48);
+    border-radius: 7px;
+    height: 27px;
+}
+.Next button:hover{
+    cursor: pointer;
+    border: 2px solid  rgb(255, 255, 255);
+    color: rgb(239, 243, 243);
+    background-color: black;
+}

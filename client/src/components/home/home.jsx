@@ -4,6 +4,7 @@ import { getCountries, orderName, orderPopulation, filterContinente, filterActiv
 import Paginacion from "../Paginacion/Paginacion.jsx";
 import Country from "../country/country";
 import Nav from '../Nav/Nav.jsx';
+import style from "./home.module.css"
 
 
 const Home = () => {
@@ -60,17 +61,32 @@ const Home = () => {
     }
 
     return (
-        <div>
-            <h1>Countries</h1>
+        <div className={style.conteiner}>
+
+            <div className={style.titulo}>
+            <h1>COUNTRIES OF THE WORLD</h1>
+            </div>
+
+<div className={style.nav}>
             <Nav />
+</div>
+
+            <div className={style.selects}>
+            <div className={style.asc}>
             <select onChange={e => handleSort(e)}>
                 <option value="des">Desendente</option>
                 <option value="asc">Asendente</option>
             </select>
+            </div>
+
+            <div className={style.mayor}>
             <select onChange={e => handleSortPop(e)}>
                 <option value="menor">Menor Poblacion</option>
                 <option value="mayor">Mayor Poblacion</option>
             </select>
+            </div>
+
+            <div className={style.continent}>
             <select onChange={e => handlerFilterContinent(e)}>
                 <option value="All">All</option>
                 <option value="Asia">Asia</option>
@@ -81,11 +97,20 @@ const Home = () => {
                 <option value="Oceania">Oceania</option>
                 <option value='Antarctica'>Antártica</option>
             </select>
+            </div>
+
+            <div className={style.activity}>
             <select onChange={(e) => handlerFilterActivity(e)}>
                 {activityState.map((count) => (
                     <option value={count.name}>{count.name}</option>
                 ))}
             </select>
+            </div>
+
+            </div>
+
+
+            <div  className={style.cards}>
             {
                 currentCountry.map(con => {
                     return (
@@ -99,7 +124,10 @@ const Home = () => {
                     )
                 })
             }
-            <div>
+            
+            </div>
+            
+            <div className={style.pag}>
                 <Paginacion
                     currentPage={currentPage}
                     contriesPerPage={contriesPerPage}
@@ -109,6 +137,8 @@ const Home = () => {
                     countries={countries?.length}
                 />
             </div>
+
+
         </div>
     )
 }

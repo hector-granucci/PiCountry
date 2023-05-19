@@ -1,0 +1,62 @@
+.cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
+    grid-auto-rows: 280px;
+    grid-auto-flow: dense;
+}
+
+
+.titulo{
+    color: rgb(15, 13, 13);
+    height: 7vh;
+    margin-top: -25px;
+    backdrop-filter: blur(200px);
+}
+
+
+.asc{
+    display: inline-block;
+    padding: 4px;
+}
+.asc select{
+   background-color: rgb(250, 208, 93);
+}
+
+.mayor{
+    display: inline-block; 
+    padding: 4px;
+}
+.mayor select{
+    background-color:rgb(250, 208, 93);
+}
+
+.continent{
+    display: inline-block;
+    padding: 4px;
+}
+.continent select{
+    background-color:rgb(250, 208, 93);
+}
+
+.activity{
+    display: inline-block;
+    padding: 4px;
+}
+.activity select{
+    background-color: rgb(250, 208, 93);
+}
+
+
+.conteiner{
+    background-image: url("../../Fondo/avionparanoramico\ .jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 118vh;
+}
+
+
+
+
+
+

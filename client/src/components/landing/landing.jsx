@@ -1,20 +1,23 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import style from "./landing.module.css"
 
 const Landing = () => {
     return (
-        <div >
-            <div >
-              
-                <h1>Descubre los 250 países del mundo y amplía tu conocimiento sobre geografía, historia, cultura y mucho más en nuestra página informativa y fácil de usar</h1>
-               
-                <div>
+        <div className={style.conteiner}>
+
+                <div className={style.Letras}>
+                <h1>ENJOY THE WORLD THROUGH YOUR </h1>
+                <h1>TRAVELS</h1>
+                </div>
+
+                <div className={style.boton}>
                     <Link to = '/home'>
-                        <button>INGRESAR</button>
+                        <button>LET'S GO</button>
                     </Link>
                 </div>
 
-            </div>
+         
 
         </div>
     );

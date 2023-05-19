@@ -1,0 +1,57 @@
+.barra{
+    display: inline-block;
+}
+.barra input{
+    background-color: rgb(241, 195, 125)
+}
+
+
+
+.buscar{
+    display: inline-block;
+}
+.buscar button{
+    background-color:  rgb(248, 168, 48);
+    border-radius: 5px;
+}
+.buscar button:hover{
+    background-color: rgb(8, 8, 8);
+    border: 2px solid rgb(248, 168, 48);
+    color:rgb(248, 168, 48);
+}
+
+
+
+.home{
+    display: inline-block;
+    padding: 5px;
+}
+.home a{
+    text-decoration: none;
+}
+.home button{
+    background-color:  rgb(248, 168, 48);   
+}
+.home button:hover{
+    background-color:  rgb(250, 208, 93);
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(248, 168, 48);
+}
+
+
+
+.create{
+    display: inline-block;
+    padding: 5px;
+}
+.create a{
+    text-decoration: none;
+}
+.create button{
+    background-color:  rgb(248, 168, 48);
+}
+.create button:hover{
+    background-color:  rgb(250, 208, 93);
+    border: 2px solid rgb(0, 0, 0);
+    color:rgb(248, 168, 48);
+}

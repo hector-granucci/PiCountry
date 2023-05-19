@@ -1,0 +1,24 @@
+.Letras{
+   color: rgb(243, 180, 8);
+}
+
+.boton button{
+   color: rgb(0, 0, 0);
+   background-color: rgb(253, 143, 0);
+   margin-top: 46vh;
+   margin-left: 1vh;
+   height: 7vh;
+   width: 15vh;
+   border-radius: 20px;
+}
+
+.boton button:hover{
+    cursor: pointer;
+    border: 4px solid  rgb(10, 10, 9);
+    color: rgb(252, 147, 11);
+    background-color: rgb(229, 233, 178);
+}
+
+.conteiner{
+   overflow: hidden;
+}

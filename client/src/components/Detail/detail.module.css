@@ -1,0 +1,44 @@
+.todo{
+    background-image: url("../../Fondo/haber.gif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.todo{
+    overflow: hidden;
+}
+
+.card{
+    backdrop-filter: blur(10px);
+    border: 5px solid black;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.img{
+    display: inline-block;
+    border: 3px solid black;
+}
+.letras{
+    display: inline-block;
+    padding: 15px;
+    color: rgb(255, 255, 255);
+}
+
+
+.activity{
+    display: inline-block;
+    border: 3px solid rgb(17, 16, 16);
+    display: inline-block;
+    backdrop-filter: blur(10px);
+    color: rgb(255, 255, 255);
+}
+
+

@@ -2,22 +2,22 @@
 const valide = (input) => {
     let errors ={};
     if(!input.name){
-        errors.name = "se requiere un nombre para la actividad"
+        errors.name = "A name is required for the activity "
     }
     if(!input.difficulty){
-        errors.difficulty = "se requiere un numero de dificultad"
+        errors.difficulty = "A difficulty number is required"
     }
     else if (input.difficulty < 1 || input.difficulty > 5){
-        errors.difficulty = "colocar un numero del 1 al 5"
+        errors.difficulty = "Put a number from 1 to 5"
     }
     if(!input.duration){
-        errors.duration = "se require una duracion"
+        errors.duration = "A duration is required"
     }
     if(!input.season){
-        errors.season= "porfavor selecione una season"
+        errors.season= "Please select a season"
     }
     if (input.countries.length === 0) {
-        errors.countries = "Por favor, selecciona al menos un país";
+        errors.countries = "Please select at least one country";
       }
     
     return errors;

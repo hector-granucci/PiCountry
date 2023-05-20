@@ -1,0 +1,138 @@
+.conteiner {
+    background-image: url("../../Fondo/maletin.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.crear {
+    backdrop-filter: blur(15px);
+    height: 45vh;
+    border: 5px solid rgb(0, 0, 0);
+    height: 100vh;
+    width: 75vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.paisesMostrados p {
+    display: inline-block;
+    color: rgb(247, 190, 3);
+}
+.paisesMostrados button {
+    display: inline-block;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 0, 0);
+}
+.paisesMostrados button:hover{
+    background-color: rgb(255, 0, 0);
+    color: rgb(0, 0, 0);
+}
+.paisesMostrados {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.boton button {
+    background-color: rgb(6, 215, 252);
+    color: rgb(9, 10, 10);
+    border-radius: 7px;
+    height: 4vh;
+    width: 10vh;
+}
+
+.boton button:hover {
+    background-color: rgb(247, 190, 3);
+    color: rgb(250, 250, 250);
+}
+
+
+
+.titulo {
+    color: rgb(247, 210, 6);
+}
+
+
+
+.name {
+    color: rgb(247, 210, 6);
+}
+
+.name p {
+    color: rgb(255, 0, 0);
+}
+
+.name input {
+    background-color: rgb(4, 215, 223);
+}
+
+
+.dificultad {
+    color: rgb(247, 210, 6);
+}
+
+.dificultad p {
+    color: rgb(255, 0, 0);
+}
+
+.dificultad input {
+    background-color: rgb(4, 215, 223);
+}
+
+
+.duracion {
+    color: rgb(247, 210, 6);
+}
+
+.duracion p {
+    color: rgb(255, 0, 0);
+}
+
+.duracion input {
+    background-color: rgb(4, 215, 223);
+}
+
+.season {
+    color: rgb(247, 210, 6);
+}
+
+.season p {
+    color: rgb(255, 0, 0);
+}
+
+
+
+.paises {
+    color: rgb(247, 210, 6);
+    padding: 8px;
+}
+.paises p {
+    color: rgb(255, 0, 0);
+}
+.paises select {
+    background-color: rgb(4, 215, 223);
+}
+
+
+
+.botonCreate button {
+    background-color: rgb(6, 215, 252);
+    color: rgb(9, 10, 10);
+    border-radius: 7px;
+    height: 4vh;
+}
+.botonCreate button:hover {
+    background-color: rgb(247, 190, 3);
+    color: rgb(250, 250, 250);
+}
+.botonCreate{
+    margin-left: -10px;
+}

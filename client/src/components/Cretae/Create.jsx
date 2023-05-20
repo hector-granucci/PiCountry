@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getCountries, postActivity } from '../../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import valide from './valide';
+import style from "./create.module.css"
 
 
 const Create = () => {
@@ -36,7 +37,7 @@ const Create = () => {
         checked &&
             setInput({
                 ...input,
-                season:  value
+                season: value
             })
         setErrors(valide({
             ...input,
@@ -98,109 +99,133 @@ const Create = () => {
     }, [])
 
     return (
-        <div>
-            <Link to="/home"><button>HOME</button></Link>
-            <h1>Create Activity</h1>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div>
-                    <label>Name:</label>
-                    <input
-                        type="text"
-                        value={input.name}
-                        name="name"
-                        onChange={(e) => handleChange(e)}
-                    />
-                    {errors.name && (
-                        <p>{errors.name}</p>
-                    )}
+        <div className={style.conteiner}>
+
+
+            <div className={style.crear}>
+                
+            <div className={style.boton}>
+                <Link to="/home"><button>HOME</button></Link>
+            </div>
+
+                <div className={style.titulo}>
+                <h1>Create Activity</h1>
                 </div>
-                <div>
-                    <label>Difficulty:</label>
-                    <input
-                        type="number"
-                        value={input.difficulty}
-                        name="difficulty"
-                        onChange={(e) => handleChange(e)}
-                    />
-                    {errors.difficulty && (
-                        <p>{errors.difficulty}</p>
-                    )}
-                </div>
-                <div>
-                    <label>Duration:</label>
-                    <input
-                        type="number"
-                        value={input.duration}
-                        name="duration"
-                        onChange={(e) => handleChange(e)}
-                    />
-                    {errors.duration && (
-                        <p>{errors.duration}</p>
-                    )}
-                </div>
-                <div>
-                    <span>Season:</span>
-                    <div key={"verano"}>
-                        <label htmlFor='Verano'>Verano</label>
+
+                <form onSubmit={(e) => handleSubmit(e)}>
+                    <div className={style.name}>
+                        <label>Name:</label>
                         <input
-                            id="Verano"
-                            type="checkbox"
-                            name='Verano'
-                            value="Verano"
-                            onChange={(e) => handleCheck(e)}
+                            type="text"
+                            value={input.name}
+                            name="name"
+                            onChange={(e) => handleChange(e)}
                         />
+                        {errors.name && (
+                            <p>{errors.name}</p>
+                        )}
                     </div>
-                    <div key={"otoño"}>
-                        <label htmlFor='Otoño'>Otoño</label>
+
+                    <div className={style.dificultad}>
+                        <label>Difficulty:</label>
                         <input
-                            id="Otoño"
-                            type="checkbox"
-                            name='Otoño'
-                            value="Otoño"
-                            onChange={(e) => handleCheck(e)}
+                            type="number"
+                            value={input.difficulty}
+                            name="difficulty"
+                            onChange={(e) => handleChange(e)}
                         />
+                        {errors.difficulty && (
+                            <p>{errors.difficulty}</p>
+                        )}
                     </div>
-                    <div key={"primevera"}>
-                        <label htmlFor='Primavera'>Primavera</label>
+
+                    <div className={style.duracion}>
+                        <label>Duration:</label>
                         <input
-                            id="Primavera"
-                            type="checkbox"
-                            name='Primavera'
-                            value="Primavera"
-                            onChange={(e) => handleCheck(e)}
+                            type="number"
+                            value={input.duration}
+                            name="duration"
+                            onChange={(e) => handleChange(e)}
                         />
+                        {errors.duration && (
+                            <p>{errors.duration}</p>
+                        )}
                     </div>
-                    <div key={"invierno"}>
-                        <label htmlFor='Invierno'>Invierno</label>
-                        <input
-                            id="Invierno"
-                            type="checkbox"
-                            name='Invierno'
-                            value="Invierno"
-                            onChange={(e) => handleCheck(e)}
-                        />
+                    
+                    <div className={style.season}>
+                        <span>Season:</span>
+                        <div key={"verano"}>
+                            <label htmlFor='Verano'>Verano</label>
+                            <input
+                                id="Verano"
+                                type="checkbox"
+                                name='Verano'
+                                value="Verano"
+                                onChange={(e) => handleCheck(e)}
+                            />
+                        </div>
+
+                        <div key={"otoño"}>
+                            <label htmlFor='Otoño'>Otoño</label>
+                            <input
+                                id="Otoño"
+                                type="checkbox"
+                                name='Otoño'
+                                value="Otoño"
+                                onChange={(e) => handleCheck(e)}
+                            />
+                        </div>
+                        <div key={"primevera"}>
+                            <label htmlFor='Primavera'>Primavera</label>
+                            <input
+                                id="Primavera"
+                                type="checkbox"
+                                name='Primavera'
+                                value="Primavera"
+                                onChange={(e) => handleCheck(e)}
+                            />
+                        </div>
+                        <div key={"invierno"}>
+                            <label htmlFor='Invierno'>Invierno</label>
+                            <input
+                                id="Invierno"
+                                type="checkbox"
+                                name='Invierno'
+                                value="Invierno"
+                                onChange={(e) => handleCheck(e)}
+                            />
+                        </div>
+                        {errors.season && (
+                            <p>{errors.season}</p>
+                        )}
                     </div>
-                    {errors.season && (
-                        <p>{errors.season}</p>
+
+                    <div className={style.paises}>
+                        <select onChange={(e) => handleSelect(e)}>
+                            {countriesState.map((count) => (
+                                <option value={count.name}>{count.name}</option>
+                            ))}
+                        </select>
+                        {errors.countries && (
+                            <p>{errors.countries}</p>)}
+                    </div>
+
+                    <div className={style.botonCreate}>
+                    <button type='submit' disabled={Object.keys(errors).length > 0}>Create</button>
+                    </div>
+
+                    <div className={style.paisesMostrados}>
+                    {input.countries.map((el) =>
+                        <div>
+                            <p>{el}</p>
+                            <button onClick={() => handleDelete(el)}>X</button>
+                        </div>
                     )}
-                </div>
-                <div>
-                    <select onChange={(e) => handleSelect(e)}>
-                        {countriesState.map((count) => (
-                            <option value={count.name}>{count.name}</option>
-                        ))}
-                    </select>
-                    {errors.countries && (
-                        <p>{errors.countries}</p>)}
-                </div>
-                <button type='submit' disabled={Object.keys(errors).length > 0}>Create</button>
-            </form>
-            {input.countries.map((el) =>
-                <div>
-                    <p>{el}</p>
-                    <button onClick={() => handleDelete(el)}>X</button>
-                </div>
-            )}
+                    </div>
+
+                </form>
+            </div>
+
         </div>
     )
 }

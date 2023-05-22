@@ -31,8 +31,8 @@ const Home = () => {
     }
 
     useEffect(() => {
+        dispatch(getActivity())
         if (Object.keys(countries).length < 1) {
-            dispatch(getActivity())
             dispatch(getCountries())
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,15 +47,18 @@ const Home = () => {
         setCurrentPage(1);
         setOrder(`ordernado ${e.target.value}`)
     }
+
     const handleSortPop = (e) => {
         e.preventDefault();
         dispatch(orderPopulation(e.target.value))
         setCurrentPage(1);
         setOrder(`ordernado ${e.target.value}`)
     }
+
     const handlerFilterContinent = (e) => {
         dispatch(filterContinente(e.target.value))
     }
+    
     const handlerFilterActivity = (e) => {
         dispatch(filterActiviti(e.target.value))
     }
@@ -64,69 +67,69 @@ const Home = () => {
         <div className={style.conteiner}>
 
             <div className={style.titulo}>
-            <h1>COUNTRIES OF THE WORLD</h1>
+                <h1>COUNTRIES OF THE WORLD</h1>
             </div>
 
-<div className={style.nav}>
-            <Nav />
-</div>
+            <div className={style.nav}>
+                <Nav />
+            </div>
 
             <div className={style.selects}>
-            <div className={style.asc}>
-            <select onChange={e => handleSort(e)}>
-                <option value="des">Desendente</option>
-                <option value="asc">Asendente</option>
-            </select>
+                <div className={style.asc}>
+                    <select onChange={e => handleSort(e)}>
+                        <option value="des">Desendente</option>
+                        <option value="asc">Asendente</option>
+                    </select>
+                </div>
+
+                <div className={style.mayor}>
+                    <select onChange={e => handleSortPop(e)}>
+                        <option value="menor">Menor Poblacion</option>
+                        <option value="mayor">Mayor Poblacion</option>
+                    </select>
+                </div>
+
+                <div className={style.continent}>
+                    <select onChange={e => handlerFilterContinent(e)}>
+                        <option value="All">All</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Africa">Africa</option>
+                        <option value="South America">South America</option>
+                        <option value="North America">North America</option>
+                        <option value="Oceania">Oceania</option>
+                        <option value='Antarctica'>Antártica</option>
+                    </select>
+                </div>
+
+                <div className={style.activity}>
+                    <select onChange={(e) => handlerFilterActivity(e)}>
+                        {activityState.map((count) => (
+                            <option value={count.name}>{count.name}</option>
+                        ))}
+                    </select>
+                </div>
+
             </div>
 
-            <div className={style.mayor}>
-            <select onChange={e => handleSortPop(e)}>
-                <option value="menor">Menor Poblacion</option>
-                <option value="mayor">Mayor Poblacion</option>
-            </select>
-            </div>
 
-            <div className={style.continent}>
-            <select onChange={e => handlerFilterContinent(e)}>
-                <option value="All">All</option>
-                <option value="Asia">Asia</option>
-                <option value="Europe">Europe</option>
-                <option value="Africa">Africa</option>
-                <option value="South America">South America</option>
-                <option value="North America">North America</option>
-                <option value="Oceania">Oceania</option>
-                <option value='Antarctica'>Antártica</option>
-            </select>
-            </div>
-
-            <div className={style.activity}>
-            <select onChange={(e) => handlerFilterActivity(e)}>
-                {activityState.map((count) => (
-                    <option value={count.name}>{count.name}</option>
-                ))}
-            </select>
-            </div>
+            <div className={style.cards}>
+                {
+                    currentCountry.map(con => {
+                        return (
+                            <Country
+                                key={con.id}
+                                id={con.id}
+                                name={con.name}
+                                image={con.image}
+                                continent={con.continent}
+                            />
+                        )
+                    })
+                }
 
             </div>
 
-
-            <div  className={style.cards}>
-            {
-                currentCountry.map(con => {
-                    return (
-                        <Country
-                            key={con.id}
-                            id={con.id}
-                            name={con.name}
-                            image={con.image}
-                            continent={con.continent}
-                        />
-                    )
-                })
-            }
-            
-            </div>
-            
             <div className={style.pag}>
                 <Paginacion
                     currentPage={currentPage}

@@ -9,6 +9,7 @@ import style from "./create.module.css"
 const Create = () => {
     const dispatch = useDispatch()
     const countriesState = useSelector((state) => state.countries)
+    const activity = useSelector(state => state.activities)
     const [errors, setErrors] = useState({})
 
 
@@ -79,15 +80,25 @@ const Create = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(postActivity(input))
-        alert("activity Creado")
-        setInput({
-            name: "",
-            difficulty: 0,
-            duration: 0,
-            season: "",
-            countries: []
-        })
+        let algo = []
+        let variable = activity.map(element => {
+            if (element.name === input.name) {
+                algo.push(element.name)
+            }
+        });
+        if (algo.length < 1) {
+            dispatch(postActivity(input))
+            setInput({
+                name: "",
+                difficulty: 0,
+                duration: 0,
+                season: "",
+                countries: []
+            })
+        }
+        else {
+            return alert("Ya existe")
+        }
     }
 
 
@@ -103,13 +114,13 @@ const Create = () => {
 
 
             <div className={style.crear}>
-                
-            <div className={style.boton}>
-                <Link to="/home"><button>HOME</button></Link>
-            </div>
+
+                <div className={style.boton}>
+                    <Link to="/home"><button>HOME</button></Link>
+                </div>
 
                 <div className={style.titulo}>
-                <h1>Create Activity</h1>
+                    <h1>Create Activity</h1>
                 </div>
 
                 <form onSubmit={(e) => handleSubmit(e)}>
@@ -151,7 +162,7 @@ const Create = () => {
                             <p>{errors.duration}</p>
                         )}
                     </div>
-                    
+
                     <div className={style.season}>
                         <span>Season:</span>
                         <div key={"verano"}>
@@ -211,16 +222,16 @@ const Create = () => {
                     </div>
 
                     <div className={style.botonCreate}>
-                    <button type='submit' disabled={Object.keys(errors).length > 0}>Create</button>
+                        <button type='submit' disabled={Object.keys(errors).length > 0}>Create</button>
                     </div>
 
                     <div className={style.paisesMostrados}>
-                    {input.countries.map((el) =>
-                        <div>
-                            <p>{el}</p>
-                            <button onClick={() => handleDelete(el)}>X</button>
-                        </div>
-                    )}
+                        {input.countries.map((el) =>
+                            <div>
+                                <p>{el}</p>
+                                <button onClick={() => handleDelete(el)}>X</button>
+                            </div>
+                        )}
                     </div>
 
                 </form>

@@ -28,6 +28,12 @@ const Nav = () => {
         <div className={style.todo}>
             <nav>
 
+                <div className={style.home}>
+                <button onClick={handlerCoutry}>
+                    <Link to="/home">HOME</Link>
+                </button>
+                </div>
+
                 <div className={style.barra}>
                 <input 
                 value={name} 
@@ -39,12 +45,6 @@ const Nav = () => {
 
                 <div className={style.buscar}>
                 <button onClick={handleSearch}>LOOK FOR</button>
-                </div>
-
-                <div className={style.home}>
-                <button onClick={handlerCoutry}>
-                    <Link to="/home">HOME</Link>
-                </button>
                 </div>
 
                 <div className={style.create}>
